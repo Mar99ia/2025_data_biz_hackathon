@@ -5,7 +5,9 @@ description = "Add your description here"
 authors = [
     { name = "adrianhajdukiewicz1", email = "adu.hajdukiewicz@gmail.com" }
 ]
-dependencies = []
+dependencies = [
+    "pandas>=2.2.3",
+]
 readme = "README.md"
 requires-python = ">= 3.8"
 
