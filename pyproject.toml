@@ -9,6 +9,7 @@ dependencies = [
     "pandas>=2.2.3",
     "ipykernel>=6.29.5",
     "pip>=25.1.1",
+    "reverse-geocoder>=1.5.1",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"

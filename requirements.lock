@@ -42,6 +42,8 @@ nest-asyncio==1.6.0
     # via ipykernel
 numpy==2.2.5
     # via pandas
+    # via reverse-geocoder
+    # via scipy
 packaging==25.0
     # via ipykernel
 pandas==2.2.3
@@ -73,6 +75,10 @@ pytz==2025.2
 pyzmq==26.4.0
     # via ipykernel
     # via jupyter-client
+reverse-geocoder==1.5.1
+    # via recruitment-2025-data-biz-hackathon
+scipy==1.15.3
+    # via reverse-geocoder
 six==1.17.0
     # via python-dateutil
 stack-data==0.6.3
