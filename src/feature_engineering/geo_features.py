@@ -26,14 +26,15 @@ def extract_location_info(
     df: pd.DataFrame,
     location_column: str = 'location',
     add_country: bool = True,
-    add_city: bool = True
+    add_city: bool = True,
+    add_admin_regions: bool = True
 ) -> pd.DataFrame:
     """
-    Extract country and city information from location coordinates.
+    Extract country, city, and administrative region information from location coordinates.
     
     This function extracts latitude and longitude values from a location column,
-    then uses reverse geocoding to identify the country and city associated with
-    those coordinates. Uses pandas apply for faster processing.
+    then uses reverse geocoding to identify the country, city, and administrative regions 
+    associated with those coordinates. Uses pandas apply for faster processing.
     
     Parameters
     ----------
@@ -45,6 +46,8 @@ def extract_location_info(
         Whether to add a 'country' column to the dataframe
     add_city : bool, default=True
         Whether to add a 'city' column to the dataframe
+    add_admin_regions : bool, default=True
+        Whether to add administrative region columns ('administrative_region_1' and 'administrative_region_2')
         
     Returns
     -------
@@ -87,12 +90,16 @@ def extract_location_info(
         # Prepare dictionaries for results
         country_dict = {}
         city_dict = {}
+        admin1_dict = {}
+        admin2_dict = {}
         
         # Process results
         for i, idx in enumerate(valid_indices):
             result = geocode_results[i]
             country_dict[idx] = result.get('cc', '')
             city_dict[idx] = result.get('name', '')
+            admin1_dict[idx] = result.get('admin1', '')
+            admin2_dict[idx] = result.get('admin2', '')
         
         # Add columns to the dataframe using vectorized operations
         if add_country:
@@ -100,6 +107,10 @@ def extract_location_info(
         
         if add_city:
             result_df['city'] = pd.Series([city_dict.get(i, '') for i in range(len(result_df))])
+        
+        if add_admin_regions:
+            result_df['administrative_region_1'] = pd.Series([admin1_dict.get(i, '') for i in range(len(result_df))])
+            result_df['administrative_region_2'] = pd.Series([admin2_dict.get(i, '') for i in range(len(result_df))])
     
     return result_df
 
@@ -109,10 +120,11 @@ def extract_location_info_batch(
     location_column: str = 'location',
     batch_size: int = 1000,
     add_country: bool = True,
-    add_city: bool = True
+    add_city: bool = True,
+    add_admin_regions: bool = True
 ) -> pd.DataFrame:
     """
-    Extract country and city information from location coordinates using batching for very large datasets.
+    Extract country, city, and administrative region information from location coordinates using batching for very large datasets.
     
     This function processes the dataframe in batches to avoid memory issues with large datasets.
     
@@ -128,6 +140,8 @@ def extract_location_info_batch(
         Whether to add a 'country' column to the dataframe
     add_city : bool, default=True
         Whether to add a 'city' column to the dataframe
+    add_admin_regions : bool, default=True
+        Whether to add administrative region columns ('administrative_region_1' and 'administrative_region_2')
         
     Returns
     -------
@@ -142,6 +156,9 @@ def extract_location_info_batch(
         result_df['country'] = ''
     if add_city:
         result_df['city'] = ''
+    if add_admin_regions:
+        result_df['administrative_region_1'] = ''
+        result_df['administrative_region_2'] = ''
     
     # Process the dataframe in batches
     for start_idx in range(0, len(df), batch_size):
@@ -152,7 +169,8 @@ def extract_location_info_batch(
             batch_df,
             location_column=location_column,
             add_country=add_country,
-            add_city=add_city
+            add_city=add_city,
+            add_admin_regions=add_admin_regions
         )
         
         # Update the results
@@ -160,5 +178,8 @@ def extract_location_info_batch(
             result_df.loc[start_idx:end_idx-1, 'country'] = batch_result['country'].values
         if add_city:
             result_df.loc[start_idx:end_idx-1, 'city'] = batch_result['city'].values
+        if add_admin_regions:
+            result_df.loc[start_idx:end_idx-1, 'administrative_region_1'] = batch_result['administrative_region_1'].values
+            result_df.loc[start_idx:end_idx-1, 'administrative_region_2'] = batch_result['administrative_region_2'].values
     
     return result_df
