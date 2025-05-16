@@ -1,5 +1,6 @@
 import pandas as pd
 import reverse_geocoder as rg
+import pycountry
 from typing import Dict, List, Union, Tuple, Optional
 
 
@@ -181,5 +182,114 @@ def extract_location_info_batch(
         if add_admin_regions:
             result_df.loc[start_idx:end_idx-1, 'administrative_region_1'] = batch_result['administrative_region_1'].values
             result_df.loc[start_idx:end_idx-1, 'administrative_region_2'] = batch_result['administrative_region_2'].values
+    
+    return result_df
+
+
+def add_country_match_feature(
+    df: pd.DataFrame,
+    user_country_col: str = 'user_country',
+    transaction_country_col: str = 'country',
+    new_col_name: str = 'is_user_transaction_country_match'
+) -> pd.DataFrame:
+    """
+    Add a binary feature indicating if user country matches transaction country.
+    
+    This function compares the user's country with the country derived from 
+    the transaction's geo-coordinates and adds a binary indicator column.
+    
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataframe containing user country and transaction country data
+    user_country_col : str, default='user_country'
+        The name of the column containing user country information
+    transaction_country_col : str, default='country'
+        The name of the column containing transaction country information 
+        (typically derived from geo-coordinates)
+    new_col_name : str, default='is_user_transaction_country_match'
+        The name to give to the new binary feature column
+        
+    Returns
+    -------
+    pd.DataFrame
+        A dataframe with the new binary feature column added
+        
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> df = pd.DataFrame({
+    ...     'user_country': ['US', 'UK', 'FR', 'DE'],
+    ...     'country': ['US', 'FR', 'FR', 'IT']
+    ... })
+    >>> add_country_match_feature(df)
+    """
+    # Make a copy to avoid modifying the original dataframe
+    result_df = df.copy()
+    
+    # Compare user country with transaction country
+    # Convert to integers (0/1) for consistency with other features
+    result_df[new_col_name] = (
+        result_df[user_country_col] == result_df[transaction_country_col]
+    ).astype(int)
+    
+    return result_df
+
+
+def convert_country_codes_to_names(
+    df: pd.DataFrame,
+    country_col: str = 'country',
+    new_col_name: str = 'country_name',
+    keep_original: bool = True
+) -> pd.DataFrame:
+    """
+    Convert ISO 3166-1 alpha-2 country codes to full country names.
+    
+    This function takes a column containing ISO 3166-1 alpha-2 country codes
+    and adds a new column with the full country names using the pycountry library.
+    
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataframe containing country code data
+    country_col : str, default='country'
+        The name of the column containing country codes
+    new_col_name : str, default='country_name'
+        The name to give to the new column containing full country names
+    keep_original : bool, default=True
+        Whether to keep the original country code column
+        
+    Returns
+    -------
+    pd.DataFrame
+        A dataframe with the new country name column added
+        
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> df = pd.DataFrame({
+    ...     'country': ['US', 'GB', 'FR', 'DE']
+    ... })
+    >>> convert_country_codes_to_names(df)
+    """
+    # Make a copy to avoid modifying the original dataframe
+    result_df = df.copy()
+    
+    # Create a function to get the country name from a country code
+    def get_country_name(code):
+        if not code or not isinstance(code, str) or len(code) != 2:
+            return None
+        try:
+            country = pycountry.countries.get(alpha_2=code)
+            return country.name if country else None
+        except (AttributeError, KeyError, ValueError):
+            return None
+    
+    # Apply the function to the country code column using vectorized operations
+    result_df[new_col_name] = result_df[country_col].apply(get_country_name)
+    
+    # Drop the original column if requested
+    if not keep_original:
+        result_df = result_df.drop(columns=[country_col])
     
     return result_df

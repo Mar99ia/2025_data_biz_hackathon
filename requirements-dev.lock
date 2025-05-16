@@ -64,6 +64,8 @@ ptyprocess==0.7.0
     # via pexpect
 pure-eval==0.2.3
     # via stack-data
+pycountry==24.6.1
+    # via recruitment-2025-data-biz-hackathon
 pygments==2.19.1
     # via ipython
     # via ipython-pygments-lexers
