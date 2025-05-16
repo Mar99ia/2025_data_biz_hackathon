@@ -1,5 +1,6 @@
 import pandas as pd
 from typing import Union, Optional
+import datetime
 
 
 def calculate_time_since_last_transaction(
@@ -170,5 +171,148 @@ def extract_weekday_from_timestamp(
     # Convert to categorical if requested
     if convert_to_categorical:
         result_df[new_col_name] = result_df[new_col_name].astype('category')
+    
+    return result_df
+
+
+def extract_date_from_timestamp(
+    df: pd.DataFrame,
+    timestamp_col: str = 'timestamp',
+    new_col_name: str = 'date'
+) -> pd.DataFrame:
+    """
+    Extract the date component from a timestamp column.
+    
+    This function extracts just the date part (year-month-day) from a timestamp
+    column, removing the time component. This is useful for grouping transactions
+    by date or analyzing patterns on a daily basis.
+    
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataframe containing transaction data
+    timestamp_col : str, default='timestamp'
+        The name of the column containing transaction timestamps
+    new_col_name : str, default='date'
+        The name to give to the new column containing the date component
+        
+    Returns
+    -------
+    pd.DataFrame
+        A dataframe with the new date column added
+        
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> df = pd.DataFrame({
+    ...     'timestamp': pd.to_datetime(['2022-01-01 08:30:00', '2022-01-02 15:45:00'])
+    ... })
+    >>> extract_date_from_timestamp(df)  # Returns '2022-01-01', '2022-01-02'
+    """
+    # Make a copy to avoid modifying the original dataframe
+    result_df = df.copy()
+    
+    # Extract just the date component from the timestamp
+    result_df[new_col_name] = pd.to_datetime(result_df[timestamp_col]).dt.date
+    
+    return result_df
+
+
+def extract_week_of_year(
+    df: pd.DataFrame,
+    timestamp_col: str = 'timestamp',
+    new_col_name: str = 'week_of_year',
+    convert_to_categorical: bool = False
+) -> pd.DataFrame:
+    """
+    Extract the week number of the year (1-53) from a timestamp column.
+    
+    This function extracts the ISO week number from a timestamp column, which
+    can be useful for detecting seasonal patterns in transactions.
+    
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataframe containing transaction data
+    timestamp_col : str, default='timestamp'
+        The name of the column containing transaction timestamps
+    new_col_name : str, default='week_of_year'
+        The name to give to the new column
+    convert_to_categorical : bool, default=False
+        Whether to convert the week number to a categorical data type
+        
+    Returns
+    -------
+    pd.DataFrame
+        A dataframe with the new week of year column added
+        
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> df = pd.DataFrame({
+    ...     'timestamp': pd.to_datetime(['2022-01-01', '2022-06-15', '2022-12-31'])
+    ... })
+    >>> extract_week_of_year(df)  # Returns week numbers: 52, 24, 52
+    """
+    # Make a copy to avoid modifying the original dataframe
+    result_df = df.copy()
+    
+    # Extract ISO week number from timestamp (1-53)
+    result_df[new_col_name] = pd.to_datetime(result_df[timestamp_col]).dt.isocalendar().week
+    
+    # Convert to categorical if requested
+    if convert_to_categorical:
+        result_df[new_col_name] = result_df[new_col_name].astype('category')
+    
+    return result_df
+
+
+def convert_date_to_unix_timestamp(
+    df: pd.DataFrame,
+    date_col: str = 'date',
+    new_col_name: str = 'unix_timestamp'
+) -> pd.DataFrame:
+    """
+    Convert date objects to Unix timestamps (seconds since January 1, 1970).
+    
+    This function converts date values to Unix timestamps, which can be
+    useful for certain machine learning models that work better with numeric inputs.
+    
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataframe containing date data
+    date_col : str, default='date'
+        The name of the column containing date values
+    new_col_name : str, default='unix_timestamp'
+        The name to give to the new column
+        
+    Returns
+    -------
+    pd.DataFrame
+        A dataframe with the new unix timestamp column added
+        
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> df = pd.DataFrame({
+    ...     'date': pd.to_datetime(['2022-01-01', '2022-01-02']).dt.date
+    ... })
+    >>> convert_date_to_unix_timestamp(df)
+    """
+    # Make a copy to avoid modifying the original dataframe
+    result_df = df.copy()
+    
+    # Define a function to convert date to unix timestamp
+    def date_to_unix(date_obj):
+        if pd.isnull(date_obj):
+            return None
+        if isinstance(date_obj, datetime.date):
+            # Convert datetime.date to unix timestamp (seconds since epoch)
+            return int(datetime.datetime.combine(date_obj, datetime.time()).timestamp())
+        return None
+    
+    # Apply the conversion function
+    result_df[new_col_name] = result_df[date_col].apply(date_to_unix)
     
     return result_df
