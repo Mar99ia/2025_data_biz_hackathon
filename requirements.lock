@@ -16,12 +16,20 @@ asttokens==3.0.0
     # via stack-data
 comm==0.2.2
     # via ipykernel
+contourpy==1.3.2
+    # via matplotlib
+cycler==0.12.1
+    # via matplotlib
 debugpy==1.8.14
     # via ipykernel
 decorator==5.2.1
     # via ipython
 executing==2.2.0
     # via stack-data
+fonttools==4.58.0
+    # via matplotlib
+imbalanced-learn==0.13.0
+    # via recruitment-2025-data-biz-hackathon
 ipykernel==6.29.5
     # via recruitment-2025-data-biz-hackathon
 ipython==9.2.0
@@ -30,29 +38,46 @@ ipython-pygments-lexers==1.1.1
     # via ipython
 jedi==0.19.2
     # via ipython
+joblib==1.5.0
+    # via imbalanced-learn
+    # via scikit-learn
 jupyter-client==8.6.3
     # via ipykernel
 jupyter-core==5.7.2
     # via ipykernel
     # via jupyter-client
+kiwisolver==1.4.8
+    # via matplotlib
+matplotlib==3.10.3
+    # via recruitment-2025-data-biz-hackathon
+    # via seaborn
 matplotlib-inline==0.1.7
     # via ipykernel
     # via ipython
 nest-asyncio==1.6.0
     # via ipykernel
 numpy==2.2.5
+    # via contourpy
+    # via imbalanced-learn
+    # via matplotlib
     # via pandas
     # via reverse-geocoder
+    # via scikit-learn
     # via scipy
+    # via seaborn
     # via xgboost
 packaging==25.0
     # via ipykernel
+    # via matplotlib
 pandas==2.2.3
     # via recruitment-2025-data-biz-hackathon
+    # via seaborn
 parso==0.8.4
     # via jedi
 pexpect==4.9.0
     # via ipython
+pillow==11.2.1
+    # via matplotlib
 pip==25.1.1
     # via recruitment-2025-data-biz-hackathon
 platformdirs==4.3.8
@@ -70,8 +95,11 @@ pycountry==24.6.1
 pygments==2.19.1
     # via ipython
     # via ipython-pygments-lexers
+pyparsing==3.2.3
+    # via matplotlib
 python-dateutil==2.9.0.post0
     # via jupyter-client
+    # via matplotlib
     # via pandas
 pytz==2025.2
     # via pandas
@@ -80,13 +108,26 @@ pyzmq==26.4.0
     # via jupyter-client
 reverse-geocoder==1.5.1
     # via recruitment-2025-data-biz-hackathon
+scikit-learn==1.6.1
+    # via imbalanced-learn
+    # via recruitment-2025-data-biz-hackathon
+    # via sklearn-compat
 scipy==1.15.3
+    # via imbalanced-learn
     # via reverse-geocoder
+    # via scikit-learn
     # via xgboost
+seaborn==0.13.2
+    # via recruitment-2025-data-biz-hackathon
 six==1.17.0
     # via python-dateutil
+sklearn-compat==0.1.3
+    # via imbalanced-learn
 stack-data==0.6.3
     # via ipython
+threadpoolctl==3.6.0
+    # via imbalanced-learn
+    # via scikit-learn
 tornado==6.4.2
     # via ipykernel
     # via jupyter-client
