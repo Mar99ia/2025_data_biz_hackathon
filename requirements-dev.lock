@@ -44,6 +44,7 @@ numpy==2.2.5
     # via pandas
     # via reverse-geocoder
     # via scipy
+    # via xgboost
 packaging==25.0
     # via ipykernel
 pandas==2.2.3
@@ -81,6 +82,7 @@ reverse-geocoder==1.5.1
     # via recruitment-2025-data-biz-hackathon
 scipy==1.15.3
     # via reverse-geocoder
+    # via xgboost
 six==1.17.0
     # via python-dateutil
 stack-data==0.6.3
@@ -99,3 +101,5 @@ tzdata==2025.2
     # via pandas
 wcwidth==0.2.13
     # via prompt-toolkit
+xgboost==3.0.1
+    # via recruitment-2025-data-biz-hackathon
