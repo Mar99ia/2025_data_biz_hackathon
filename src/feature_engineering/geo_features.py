@@ -293,3 +293,81 @@ def convert_country_codes_to_names(
         result_df = result_df.drop(columns=[country_col])
     
     return result_df
+
+
+def combine_location_datasets(
+    inpost_raw: pd.DataFrame, 
+    zabka_raw: pd.DataFrame,
+    add_source_column: bool = True,
+    save_to_file: bool = False,
+    output_path: str = 'data/combined_locations.csv'
+) -> pd.DataFrame:
+    """
+    Combine InPost and Żabka datasets into a single dataframe with consistent columns.
+    
+    This function extracts latitude, longitude, and opening hours from both InPost and Żabka 
+    dataframes and combines them into a single dataframe with consistent column names.
+    
+    Parameters
+    ----------
+    inpost_raw : pd.DataFrame
+        The raw InPost dataset containing location and opening hours data
+    zabka_raw : pd.DataFrame
+        The raw Żabka dataset containing location and opening hours data
+    add_source_column : bool, default=True
+        Whether to add a 'source' column indicating which dataset each record came from
+    save_to_file : bool, default=False
+        Whether to save the combined dataset to a CSV file
+    output_path : str, default='data/combined_locations.csv'
+        The path where to save the combined dataset if save_to_file is True
+        
+    Returns
+    -------
+    pd.DataFrame
+        A dataframe containing combined location data with consistent columns
+        
+    Notes
+    -----
+    The function assumes that:
+    - InPost data has a 'location' column with 'latitude' and 'longitude' keys
+    - Żabka data has 'lat' and 'lng' columns for coordinates
+    - InPost data has 'opening_hours' column
+    - Żabka data has 'openTime' and 'closeTime' columns
+    
+    Examples
+    --------
+    >>> from src.data_preparation.read_data import read_inpost_data
+    >>> import pandas as pd
+    >>> inpost_raw = read_inpost_data()
+    >>> zabka_raw = pd.read_csv('data/zabka_shops.csv')
+    >>> combined_df = combine_location_datasets(inpost_raw, zabka_raw)
+    """
+    # Extract latitude and longitude from inpost_raw
+    inpost_df = pd.DataFrame()
+    
+    # Extract latitude and longitude from the location dictionary
+    inpost_df['latitude'] = inpost_raw['location'].apply(lambda x: x['latitude'])
+    inpost_df['longitude'] = inpost_raw['location'].apply(lambda x: x['longitude'])
+    inpost_df['opening_hours'] = inpost_raw['opening_hours']
+    
+    if add_source_column:
+        inpost_df['source'] = 'inpost'
+    
+    # Extract latitude, longitude, and opening hours from zabka_raw
+    zabka_df = pd.DataFrame()
+    zabka_df['latitude'] = zabka_raw['lat']
+    zabka_df['longitude'] = zabka_raw['lng']
+    zabka_df['opening_hours'] = zabka_raw['openTime'] + '-' + zabka_raw['closeTime']
+    
+    if add_source_column:
+        zabka_df['source'] = 'zabka'
+    
+    # Combine the two dataframes
+    combined_df = pd.concat([inpost_df, zabka_df], ignore_index=True)
+    
+    # Save the combined dataset to a CSV file if requested
+    if save_to_file:
+        combined_df.to_csv(output_path, index=False)
+        print(f"Combined dataset saved to '{output_path}'")
+    
+    return combined_df
