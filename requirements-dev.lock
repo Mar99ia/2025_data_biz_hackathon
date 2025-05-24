@@ -14,6 +14,9 @@ alembic==1.15.2
     # via optuna
 asttokens==3.0.0
     # via stack-data
+certifi==2025.4.26
+    # via pyogrio
+    # via pyproj
 colorama==0.4.6
     # via colorlog
     # via ipython
@@ -34,6 +37,8 @@ executing==2.2.0
     # via stack-data
 fonttools==4.58.0
     # via matplotlib
+geopandas==1.0.1
+    # via recruitment-2025-data-biz-hackathon
 greenlet==3.2.2
     # via sqlalchemy
 imbalanced-learn==0.13.0
@@ -70,22 +75,28 @@ nest-asyncio==1.6.0
     # via ipykernel
 numpy==2.2.5
     # via contourpy
+    # via geopandas
     # via imbalanced-learn
     # via matplotlib
     # via optuna
     # via pandas
+    # via pyogrio
     # via reverse-geocoder
     # via scikit-learn
     # via scipy
     # via seaborn
+    # via shapely
     # via xgboost
 optuna==4.3.0
     # via recruitment-2025-data-biz-hackathon
 packaging==25.0
+    # via geopandas
     # via ipykernel
     # via matplotlib
     # via optuna
+    # via pyogrio
 pandas==2.2.3
+    # via geopandas
     # via recruitment-2025-data-biz-hackathon
     # via seaborn
 parso==0.8.4
@@ -107,8 +118,12 @@ pycountry==24.6.1
 pygments==2.19.1
     # via ipython
     # via ipython-pygments-lexers
+pyogrio==0.11.0
+    # via geopandas
 pyparsing==3.2.3
     # via matplotlib
+pyproj==3.7.1
+    # via geopandas
 python-dateutil==2.9.0.post0
     # via jupyter-client
     # via matplotlib
@@ -135,6 +150,8 @@ scipy==1.15.3
     # via xgboost
 seaborn==0.13.2
     # via recruitment-2025-data-biz-hackathon
+shapely==2.1.1
+    # via geopandas
 six==1.17.0
     # via python-dateutil
 sklearn-compat==0.1.3
