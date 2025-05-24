@@ -1,40 +1,59 @@
-# Recruitment 2025 Data Biz Hackathon
+# OOH Delivery Infrastructure Analysis
 
-## Setup
-
-### Installing Rye
-
-This project uses Rye as a Python package manager. To install Rye, follow these instructions:
-
-#### macOS/Linux
-
-```bash
-curl -sSf https://rye-up.com/get | bash
-```
-
-#### Windows
-
-```bash
-irm https://rye-up.com/get.ps1 | iex
-```
-
-For more information about Rye, visit [the official documentation](https://rye-up.com).
-
-### Project Setup
-
-1. Clone this repository
-2. Navigate to the project directory
-3. Run `rye sync` to install all dependencies
-4. Start Jupyter Notebook with `rye run jupyter notebook`
+## Project Overview
+This project analyzes the Out-of-Home (OOH) delivery infrastructure in Poland, focusing on identifying market gaps and opportunities for expansion. The analysis includes various types of pickup points and their characteristics, with a special focus on identifying underserved areas with high market potential.
 
 ## Project Structure
+```
+├── data/                  # Data storage
+│   ├── raw/              # Raw data files
+│   └── processed/        # Processed data files
+├── src/                  # Source code
+│   ├── data/            # Data processing scripts
+│   ├── analysis/        # Analysis scripts
+│   ├── visualization/   # Visualization scripts
+│   └── models/          # Machine learning models
+├── notebooks/           # Jupyter notebooks for exploration
+├── dashboard/           # Streamlit dashboard
+└── docs/               # Documentation
+```
 
-- `conf/` - Configuration files
-- `data/` - Raw and processed data files
-- `notebooks/` - Jupyter notebooks for exploration and analysis
-- `src/` - Source code
-  - `data_preparation/` - Data preparation scripts
-  - `feature_engineering/` - Feature engineering modules
-  - `evaluation/` - Model evaluation
-  - `modelling/` - Model implementation
-- `tests/` - Test files
+## Setup Instructions
+1. Create a virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+## Key Features
+- Interactive map visualization of OOH delivery points
+- Market gap analysis using demographic and economic data
+- Location profiling and scoring system
+- Executive dashboard with key insights
+- Machine learning models for market potential prediction
+
+## Data Sources
+- InPost API data
+- OpenStreetMap
+- GUS (Polish Central Statistical Office)
+- Eurostat
+- Other open-source data sources
+
+## Technologies Used
+- Python
+- Pandas & GeoPandas
+- Folium for map visualization
+- Streamlit for interactive dashboard
+- Scikit-learn for machine learning
+- PostgreSQL/PostGIS for spatial data (optional)
+
+## Team
+[Your Team Name]
+
+## License
+MIT License

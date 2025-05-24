@@ -1,7 +1,7 @@
 [project]
 name = "recruitment-2025-data-biz-hackathon"
 version = "0.1.0"
-description = "Add your description here"
+description = "OOH Delivery Infrastructure Analysis in Poland"
 authors = [
     { name = "adrianhajdukiewicz1", email = "adu.hajdukiewicz@gmail.com" }
 ]
@@ -17,6 +17,18 @@ dependencies = [
     "matplotlib>=3.10.3",
     "seaborn>=0.13.2",
     "optuna>=4.3.0",
+    "geopandas>=0.13.0",
+    "folium>=0.14.0",
+    "streamlit>=1.28.0",
+    "plotly>=5.18.0",
+    "geopy>=2.4.0",
+    "shapely>=2.0.0",
+    "osmnx>=1.6.0",
+    "requests>=2.31.0",
+    "beautifulsoup4>=4.12.0",
+    "tqdm>=4.66.0",
+    "python-dotenv>=1.0.0",
+    "jupyter>=1.1.1",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"

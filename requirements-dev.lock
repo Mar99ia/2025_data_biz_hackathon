@@ -12,9 +12,51 @@
 -e file:.
 alembic==1.15.2
     # via optuna
+altair==5.5.0
+    # via streamlit
+anyio==4.9.0
+    # via httpx
+    # via jupyter-server
+argon2-cffi==23.1.0
+    # via jupyter-server
+argon2-cffi-bindings==21.2.0
+    # via argon2-cffi
+arrow==1.3.0
+    # via isoduration
 asttokens==3.0.0
     # via stack-data
+async-lru==2.0.5
+    # via jupyterlab
+attrs==25.3.0
+    # via jsonschema
+    # via referencing
+babel==2.17.0
+    # via jupyterlab-server
+beautifulsoup4==4.13.4
+    # via nbconvert
+    # via recruitment-2025-data-biz-hackathon
+bleach==6.2.0
+    # via nbconvert
+blinker==1.9.0
+    # via streamlit
+branca==0.8.1
+    # via folium
+cachetools==5.5.2
+    # via streamlit
+certifi==2025.4.26
+    # via httpcore
+    # via httpx
+    # via pyogrio
+    # via pyproj
+    # via requests
+cffi==1.17.1
+    # via argon2-cffi-bindings
+charset-normalizer==3.4.2
+    # via requests
+click==8.2.1
+    # via streamlit
 colorama==0.4.6
+    # via click
     # via colorlog
     # via ipython
     # via tqdm
@@ -22,6 +64,7 @@ colorlog==6.9.0
     # via optuna
 comm==0.2.2
     # via ipykernel
+    # via ipywidgets
 contourpy==1.3.2
     # via matplotlib
 cycler==0.12.1
@@ -30,100 +73,294 @@ debugpy==1.8.14
     # via ipykernel
 decorator==5.2.1
     # via ipython
+defusedxml==0.7.1
+    # via nbconvert
 executing==2.2.0
     # via stack-data
+fastjsonschema==2.21.1
+    # via nbformat
+folium==0.19.6
+    # via recruitment-2025-data-biz-hackathon
 fonttools==4.58.0
     # via matplotlib
+fqdn==1.5.1
+    # via jsonschema
+geographiclib==2.0
+    # via geopy
+geopandas==1.0.1
+    # via osmnx
+    # via recruitment-2025-data-biz-hackathon
+geopy==2.4.1
+    # via recruitment-2025-data-biz-hackathon
+gitdb==4.0.12
+    # via gitpython
+gitpython==3.1.44
+    # via streamlit
 greenlet==3.2.2
     # via sqlalchemy
+h11==0.16.0
+    # via httpcore
+httpcore==1.0.9
+    # via httpx
+httpx==0.28.1
+    # via jupyterlab
+idna==3.10
+    # via anyio
+    # via httpx
+    # via jsonschema
+    # via requests
 imbalanced-learn==0.13.0
     # via recruitment-2025-data-biz-hackathon
 ipykernel==6.29.5
+    # via jupyter
+    # via jupyter-console
+    # via jupyterlab
     # via recruitment-2025-data-biz-hackathon
 ipython==9.2.0
     # via ipykernel
+    # via ipywidgets
+    # via jupyter-console
 ipython-pygments-lexers==1.1.1
     # via ipython
+ipywidgets==8.1.7
+    # via jupyter
+isoduration==20.11.0
+    # via jsonschema
 jedi==0.19.2
     # via ipython
+jinja2==3.1.6
+    # via altair
+    # via branca
+    # via folium
+    # via jupyter-server
+    # via jupyterlab
+    # via jupyterlab-server
+    # via nbconvert
+    # via pydeck
 joblib==1.5.0
     # via imbalanced-learn
     # via scikit-learn
+json5==0.12.0
+    # via jupyterlab-server
+jsonpointer==3.0.0
+    # via jsonschema
+jsonschema==4.23.0
+    # via altair
+    # via jupyter-events
+    # via jupyterlab-server
+    # via nbformat
+jsonschema-specifications==2025.4.1
+    # via jsonschema
+jupyter==1.1.1
+    # via recruitment-2025-data-biz-hackathon
 jupyter-client==8.6.3
     # via ipykernel
+    # via jupyter-console
+    # via jupyter-server
+    # via nbclient
+jupyter-console==6.6.3
+    # via jupyter
 jupyter-core==5.7.2
     # via ipykernel
     # via jupyter-client
+    # via jupyter-console
+    # via jupyter-server
+    # via jupyterlab
+    # via nbclient
+    # via nbconvert
+    # via nbformat
+jupyter-events==0.12.0
+    # via jupyter-server
+jupyter-lsp==2.2.5
+    # via jupyterlab
+jupyter-server==2.16.0
+    # via jupyter-lsp
+    # via jupyterlab
+    # via jupyterlab-server
+    # via notebook
+    # via notebook-shim
+jupyter-server-terminals==0.5.3
+    # via jupyter-server
+jupyterlab==4.4.2
+    # via jupyter
+    # via notebook
+jupyterlab-pygments==0.3.0
+    # via nbconvert
+jupyterlab-server==2.27.3
+    # via jupyterlab
+    # via notebook
+jupyterlab-widgets==3.0.15
+    # via ipywidgets
 kiwisolver==1.4.8
     # via matplotlib
 mako==1.3.10
     # via alembic
 markupsafe==3.0.2
+    # via jinja2
     # via mako
+    # via nbconvert
 matplotlib==3.10.3
     # via recruitment-2025-data-biz-hackathon
     # via seaborn
 matplotlib-inline==0.1.7
     # via ipykernel
     # via ipython
+mistune==3.1.3
+    # via nbconvert
+narwhals==1.40.0
+    # via altair
+    # via plotly
+nbclient==0.10.2
+    # via nbconvert
+nbconvert==7.16.6
+    # via jupyter
+    # via jupyter-server
+nbformat==5.10.4
+    # via jupyter-server
+    # via nbclient
+    # via nbconvert
 nest-asyncio==1.6.0
     # via ipykernel
+networkx==3.4.2
+    # via osmnx
+notebook==7.4.2
+    # via jupyter
+notebook-shim==0.2.4
+    # via jupyterlab
+    # via notebook
 numpy==2.2.5
     # via contourpy
+    # via folium
+    # via geopandas
     # via imbalanced-learn
     # via matplotlib
     # via optuna
+    # via osmnx
     # via pandas
+    # via pydeck
+    # via pyogrio
     # via reverse-geocoder
     # via scikit-learn
     # via scipy
     # via seaborn
+    # via shapely
+    # via streamlit
     # via xgboost
 optuna==4.3.0
     # via recruitment-2025-data-biz-hackathon
-packaging==25.0
+osmnx==2.0.3
+    # via recruitment-2025-data-biz-hackathon
+overrides==7.7.0
+    # via jupyter-server
+packaging==24.2
+    # via altair
+    # via geopandas
     # via ipykernel
+    # via jupyter-events
+    # via jupyter-server
+    # via jupyterlab
+    # via jupyterlab-server
     # via matplotlib
+    # via nbconvert
     # via optuna
+    # via plotly
+    # via pyogrio
+    # via streamlit
 pandas==2.2.3
+    # via geopandas
+    # via osmnx
     # via recruitment-2025-data-biz-hackathon
     # via seaborn
+    # via streamlit
+pandocfilters==1.5.1
+    # via nbconvert
 parso==0.8.4
     # via jedi
 pillow==11.2.1
     # via matplotlib
+    # via streamlit
 pip==25.1.1
     # via recruitment-2025-data-biz-hackathon
 platformdirs==4.3.8
     # via jupyter-core
+plotly==6.1.1
+    # via recruitment-2025-data-biz-hackathon
+prometheus-client==0.22.0
+    # via jupyter-server
 prompt-toolkit==3.0.51
     # via ipython
+    # via jupyter-console
+protobuf==6.31.0
+    # via streamlit
 psutil==7.0.0
     # via ipykernel
 pure-eval==0.2.3
     # via stack-data
+pyarrow==20.0.0
+    # via streamlit
 pycountry==24.6.1
     # via recruitment-2025-data-biz-hackathon
+pycparser==2.22
+    # via cffi
+pydeck==0.9.1
+    # via streamlit
 pygments==2.19.1
     # via ipython
     # via ipython-pygments-lexers
+    # via jupyter-console
+    # via nbconvert
+pyogrio==0.11.0
+    # via geopandas
 pyparsing==3.2.3
     # via matplotlib
+pyproj==3.7.1
+    # via geopandas
 python-dateutil==2.9.0.post0
+    # via arrow
     # via jupyter-client
     # via matplotlib
     # via pandas
+python-dotenv==1.1.0
+    # via recruitment-2025-data-biz-hackathon
+python-json-logger==3.3.0
+    # via jupyter-events
 pytz==2025.2
     # via pandas
 pywin32==310
     # via jupyter-core
+pywinpty==2.0.15
+    # via jupyter-server
+    # via jupyter-server-terminals
+    # via terminado
 pyyaml==6.0.2
+    # via jupyter-events
     # via optuna
 pyzmq==26.4.0
     # via ipykernel
     # via jupyter-client
+    # via jupyter-console
+    # via jupyter-server
+referencing==0.36.2
+    # via jsonschema
+    # via jsonschema-specifications
+    # via jupyter-events
+requests==2.32.3
+    # via folium
+    # via jupyterlab-server
+    # via osmnx
+    # via recruitment-2025-data-biz-hackathon
+    # via streamlit
 reverse-geocoder==1.5.1
     # via recruitment-2025-data-biz-hackathon
+rfc3339-validator==0.1.4
+    # via jsonschema
+    # via jupyter-events
+rfc3986-validator==0.1.1
+    # via jsonschema
+    # via jupyter-events
+rpds-py==0.25.1
+    # via jsonschema
+    # via referencing
 scikit-learn==1.6.1
     # via imbalanced-learn
     # via recruitment-2025-data-biz-hackathon
@@ -135,36 +372,100 @@ scipy==1.15.3
     # via xgboost
 seaborn==0.13.2
     # via recruitment-2025-data-biz-hackathon
+send2trash==1.8.3
+    # via jupyter-server
+setuptools==80.8.0
+    # via jupyterlab
+shapely==2.1.1
+    # via geopandas
+    # via osmnx
+    # via recruitment-2025-data-biz-hackathon
 six==1.17.0
     # via python-dateutil
+    # via rfc3339-validator
 sklearn-compat==0.1.3
     # via imbalanced-learn
+smmap==5.0.2
+    # via gitdb
+sniffio==1.3.1
+    # via anyio
+soupsieve==2.7
+    # via beautifulsoup4
 sqlalchemy==2.0.41
     # via alembic
     # via optuna
 stack-data==0.6.3
     # via ipython
+streamlit==1.45.1
+    # via recruitment-2025-data-biz-hackathon
+tenacity==9.1.2
+    # via streamlit
+terminado==0.18.1
+    # via jupyter-server
+    # via jupyter-server-terminals
 threadpoolctl==3.6.0
     # via imbalanced-learn
     # via scikit-learn
+tinycss2==1.4.0
+    # via bleach
+toml==0.10.2
+    # via streamlit
 tornado==6.4.2
     # via ipykernel
     # via jupyter-client
+    # via jupyter-server
+    # via jupyterlab
+    # via notebook
+    # via streamlit
+    # via terminado
 tqdm==4.67.1
     # via optuna
+    # via recruitment-2025-data-biz-hackathon
 traitlets==5.14.3
     # via comm
     # via ipykernel
     # via ipython
+    # via ipywidgets
     # via jupyter-client
+    # via jupyter-console
     # via jupyter-core
+    # via jupyter-events
+    # via jupyter-server
+    # via jupyterlab
     # via matplotlib-inline
+    # via nbclient
+    # via nbconvert
+    # via nbformat
+types-python-dateutil==2.9.0.20250516
+    # via arrow
 typing-extensions==4.13.2
     # via alembic
+    # via altair
+    # via anyio
+    # via beautifulsoup4
+    # via referencing
     # via sqlalchemy
+    # via streamlit
 tzdata==2025.2
     # via pandas
+uri-template==1.3.0
+    # via jsonschema
+urllib3==2.4.0
+    # via requests
+watchdog==6.0.0
+    # via streamlit
 wcwidth==0.2.13
     # via prompt-toolkit
+webcolors==24.11.1
+    # via jsonschema
+webencodings==0.5.1
+    # via bleach
+    # via tinycss2
+websocket-client==1.8.0
+    # via jupyter-server
+widgetsnbextension==4.0.14
+    # via ipywidgets
 xgboost==3.0.1
     # via recruitment-2025-data-biz-hackathon
+xyzservices==2025.4.0
+    # via folium

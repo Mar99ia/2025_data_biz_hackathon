@@ -7,7 +7,9 @@ wheels/
 *.egg-info
 
 # venv
-.venv
+.venv/
+venv/
+
 
 .DS_Store
 data/
