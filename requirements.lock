@@ -12,10 +12,12 @@
 -e file:.
 alembic==1.15.2
     # via optuna
-appnope==0.1.4
-    # via ipykernel
 asttokens==3.0.0
     # via stack-data
+colorama==0.4.6
+    # via colorlog
+    # via ipython
+    # via tqdm
 colorlog==6.9.0
     # via optuna
 comm==0.2.2
@@ -32,6 +34,8 @@ executing==2.2.0
     # via stack-data
 fonttools==4.58.0
     # via matplotlib
+greenlet==3.2.2
+    # via sqlalchemy
 imbalanced-learn==0.13.0
     # via recruitment-2025-data-biz-hackathon
 ipykernel==6.29.5
@@ -86,8 +90,6 @@ pandas==2.2.3
     # via seaborn
 parso==0.8.4
     # via jedi
-pexpect==4.9.0
-    # via ipython
 pillow==11.2.1
     # via matplotlib
 pip==25.1.1
@@ -98,8 +100,6 @@ prompt-toolkit==3.0.51
     # via ipython
 psutil==7.0.0
     # via ipykernel
-ptyprocess==0.7.0
-    # via pexpect
 pure-eval==0.2.3
     # via stack-data
 pycountry==24.6.1
@@ -115,6 +115,8 @@ python-dateutil==2.9.0.post0
     # via pandas
 pytz==2025.2
     # via pandas
+pywin32==310
+    # via jupyter-core
 pyyaml==6.0.2
     # via optuna
 pyzmq==26.4.0
