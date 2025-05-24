@@ -14,3 +14,8 @@ venv/
 .DS_Store
 data/
 old
+
+# files starting with 'requirements'
+requirements*.txt
+# does not matter the extension
+requirements.*
