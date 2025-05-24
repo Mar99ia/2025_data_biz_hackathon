@@ -10,7 +10,7 @@
 #   universal: false
 
 -e file:.
-alembic==1.15.2
+alembic==1.16.1
     # via optuna
 altair==5.5.0
     # via streamlit
@@ -137,7 +137,7 @@ jinja2==3.1.6
     # via jupyterlab-server
     # via nbconvert
     # via pydeck
-joblib==1.5.0
+joblib==1.5.1
     # via imbalanced-learn
     # via scikit-learn
 json5==0.12.0
@@ -228,7 +228,7 @@ notebook==7.4.2
 notebook-shim==0.2.4
     # via jupyterlab
     # via notebook
-numpy==2.2.5
+numpy==2.2.6
     # via contourpy
     # via folium
     # via geopandas
@@ -410,7 +410,7 @@ tinycss2==1.4.0
     # via bleach
 toml==0.10.2
     # via streamlit
-tornado==6.4.2
+tornado==6.5.1
     # via ipykernel
     # via jupyter-client
     # via jupyter-server
